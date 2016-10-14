@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/marc/Dropbox/Stanford/career/blizzard'
+let g:netrw_dirhist_2='/home/marc/Dropbox/Stanford/Spring/CS142/.hg'
+let g:netrw_dirhist_3='/home/marc/Dropbox/Stanford/Spring/CS142/project3/node_modules'
+let g:netrw_dirhist_4='/home/marc/Dropbox/Stanford/Spring/CS142/project5/components/user-list'
+let g:netrw_dirhist_5='/home/marc/dev/lcsbuilds_public/lcsbuilds_master/.git'
