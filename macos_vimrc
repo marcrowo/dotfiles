@@ -1,0 +1,147 @@
+" VUNDLE STUFF (replaced pathogen)
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
+Plugin 'tpope/vim-sleuth'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'dracula/vim'
+Plugin 'itchyny/vim-gitbranch'
+Plugin 'rust-lang/rust.vim'
+Plugin 'cespare/vim-toml'
+Plugin 'jeetsukumaran/vim-filebeagle'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plugin 'junegunn/fzf.vim'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+" let g:jsx_ext_required = 0
+
+"""" 1. Vim Behaviour.
+" Use filetype-based syntax hilighting, ftplugins, and indentation.
+syntax enable
+
+"color dracula
+
+set background=dark
+let g:solarized_termcolors=16
+colorscheme solarized
+
+filetype plugin indent on
+" Use numbering. Don't use relative numbering as this is slow (especially in
+" .tex files).
+set number
+" Enables mouse support. Note that on Mac OS X this doesn't work well on the
+" default terminal.
+set mouse=a
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
+
+set backspace=2 " make backspace work like most other apps
+
+"""" 2. Key Bindings.
+" More convenient movement when lines are wrapped.
+nmap j gj
+nmap k gk
+
+inoremap jk <ESC>
+let mapleader = "\<Space>"
+
+"""" 3. Vim Appearance.
+" Search settings
+set hlsearch " hilight
+set incsearch " jump to best fit
+ " Turn off seach hilighting with <CR>.
+nnoremap <CR> :nohlsearch <bar> redraw! <CR><CR>
+" Tab settings
+set autoindent
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set expandtab
+" Make statusline appear even with only single window.
+set laststatus=2
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%{exists('*CapsLockStatusline')?CapsLockStatusline():''}%y%=%-16(\ %l,%c-%v\ %)\ %{gitbranch#name()}\ %P
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+set splitbelow
+set splitright
+
+set timeoutlen=1000 ttimeoutlen=0
+
+" youcompleteme
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" syntastic recommended settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" better moving between errors
+nnoremap ]l :lnext <CR>
+nnoremap [l :lprev <CR>
+
+" use eslint for javascript
+let g:syntastic_javascript_checkers=['eslint']
+
+" use project eslint
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
+
+" copy paste in mac
+set clipboard=unnamed
+
+" file explorer
+"let g:netrw_banner = 0
+"let g:netrw_liststyle = 3
+"let g:netrw_browse_split = 4
+"let g:netrw_altv = 1
+"let g:netrw_winsize = 25
+
+"augroup ProjectDrawer
+"  autocmd!
+"    autocmd VimEnter * :Vexplore
+"augroup END
+"
+
+" recommended by https://github.com/airblade/vim-gitgutter
+set updatetime=250
+
+" better moving between buffers 
+nnoremap ]b :bn <CR>
+nnoremap [b :bp <CR>
