@@ -70,7 +70,10 @@
 (use-package company               
   :ensure t
   :defer t
-  :init (global-company-mode))
+  :init (global-company-mode)
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
 (set-frame-parameter nil 'background-mode 'dark)
@@ -94,3 +97,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
