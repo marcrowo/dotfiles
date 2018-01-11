@@ -75,15 +75,15 @@
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2))
 
+(use-package magit
+  :ensure t)
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
 (set-frame-parameter nil 'background-mode 'dark)
 (set-terminal-parameter nil 'background-mode 'dark)
 (load-theme 'solarized t)
 
 (set-frame-font "Source Code Pro 14" t t)
-
-(use-package lua-mode
-  :ensure t)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

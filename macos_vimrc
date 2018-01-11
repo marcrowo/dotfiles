@@ -10,7 +10,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'vim-syntastic/syntastic'
+"Plugin 'vim-syntastic/syntastic'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'tpope/vim-sleuth'
@@ -23,7 +23,8 @@ Plugin 'cespare/vim-toml'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plugin 'junegunn/fzf.vim'
-Plugin 'w0rp/ale'
+Plugin 'w0rp/ale' " async version of syntastic, less complete
+Plugin 'JuliaEditorSupport/julia-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -82,14 +83,16 @@ nnoremap <leader>fa :Ag <CR>
 nnoremap <leader>bb :Buffers <CR>
 nnoremap <leader>gs :GFiles?<CR>
 "nnoremap <leader>st :SyntasticToggleMode<CR>
-nnoremap <leader>st :ALEToggle<CR>
+nnoremap <leader>ts :ALEToggle<CR>
+nnoremap <leader>gt :YcmCompleter GoTo<CR>
 
 """" 3. Vim Appearance.
 " Search settings
 set hlsearch " hilight
 set incsearch " jump to best fit
  " Turn off seach hilighting with <CR>.
-nnoremap <CR> :nohlsearch <bar> redraw! <CR><CR>
+nnoremap <CR> :nohlsearch <bar> redraw! <CR>
+" nnoremap <CR> :nohlsearch <bar> redraw! <bar> :MerlinClearEnclosing <CR> " Turn of merlin highlighting (ie. type info)
 " Tab settings
 set autoindent
 set smartindent
@@ -132,26 +135,30 @@ let g:ycm_filetype_blacklist = {
 nmap <silent> ]l <Plug>(ale_previous_wrap)
 nmap <silent> [l <Plug>(ale_next_wrap)
 
+let g:ale_pattern_options = {
+\   '.*\.tex$': {'ale_enabled': 0},
+\}
+
 "" disable syntastic by default
 "let g:syntastic_mode_map = { 'mode': 'passive' }
 "
-"" syntastic recommended settings
+""" syntastic recommended settings
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
 "
 "let g:syntastic_always_populate_loc_list = 1
-""let g:syntastic_auto_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
 "let g:syntastic_check_on_open = 1
 "let g:syntastic_check_on_wq = 0
-" better moving between errors
+"" better moving between errors
 "nnoremap ]l :lnext <CR>
 "nnoremap [l :lprev <CR>
-"
-"" use eslint for javascript
+
+" use eslint for javascript
 "let g:syntastic_javascript_checkers=['eslint']
 "
-"" use project eslint
+" use project eslint
 "let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 
 " copy paste in mac
