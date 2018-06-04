@@ -20,7 +20,7 @@
         (height . 57) ; lines
         ))
 
-(global-hl-line-mode t)
+;; (global-hl-line-mode t) ; highlight current line
 (global-linum-mode t)
 
 (setq require-final-newline t) ; Always add new line to the end of a file
@@ -57,10 +57,11 @@
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
   ;; Better split navigation, default is C-w + [h / j / k / l]
-  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-  (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right))
+  ;;(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  ;;(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  ;;(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+  ;;(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+  )
 
 (use-package evil-escape
   :ensure t
@@ -77,6 +78,9 @@
   :config
   (setq company-idle-delay 0)
   (setq company-minimum-prefix-length 2))
+
+(use-package magit
+  :ensure t)           
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
 (set-frame-parameter nil 'background-mode 'light)
