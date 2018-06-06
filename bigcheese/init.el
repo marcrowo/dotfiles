@@ -38,7 +38,7 @@
 ;; for new packages.
 (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
                          ("gnu"       . "http://elpa.gnu.org/packages/")
-                         ("melpa"     . "https://melpa.org/packages/")
+                         ("melpa"     . "http://melpa.org/packages/")
                          ))
 (package-initialize)
 
@@ -81,6 +81,13 @@
 
 (use-package magit
   :ensure t)           
+
+(use-package tex
+  :ensure auctex)
+
+(use-package which-key
+  :ensure t
+  :config (which-key-mode t))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
 (set-frame-parameter nil 'background-mode 'light)
