@@ -29,9 +29,14 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+;; Set default tab to 4
+(setq-default tab-width 4)
 ;; Use Linux style C indentation with 4 space tabs
 (setq c-default-style "linux"
       c-basic-offset 2)
+
+;; Turn on spell checking in LaTeX files by default.
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
 (setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
 ;; the following lines tell emacs where on the internet to look up
@@ -80,7 +85,8 @@
   (setq company-minimum-prefix-length 2))
 
 (use-package magit
-  :ensure t)           
+  :ensure t
+  :bind (("C-x g" . magit-status)))
 
 (use-package tex
   :ensure auctex)
@@ -89,21 +95,30 @@
   :ensure t
   :config (which-key-mode t))
 
+(use-package ivy :demand
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "%d/%d "))
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
 (set-frame-parameter nil 'background-mode 'light)
 (set-terminal-parameter nil 'background-mode 'light)
 (load-theme 'solarized t)
 
-(set-frame-font "Source Code Pro 11" t t)
+(set-frame-font "Fira Code 11" t t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (company use-package evil-escape))))
+ '(package-selected-packages (quote (tuareg company use-package evil-escape))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
