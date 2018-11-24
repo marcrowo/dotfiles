@@ -101,9 +101,12 @@
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "))
 
+(use-package rust-mode
+  :ensure t)
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
-(set-frame-parameter nil 'background-mode 'light)
-(set-terminal-parameter nil 'background-mode 'light)
+(set-frame-parameter nil 'background-mode 'dark)
+(set-terminal-parameter nil 'background-mode 'dark)
 (load-theme 'solarized t)
 
 (set-frame-font "Fira Code 11" t t)
