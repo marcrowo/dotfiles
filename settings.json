@@ -1,0 +1,62 @@
+{
+    "telemetry.enableTelemetry": false,
+    "telemetry.enableCrashReporter": false,
+    "workbench.activityBar.visible": true,
+    "vim.insertModeKeyBindings": [
+        {
+            "before": [
+                "j",
+                "k"
+            ],
+            "after": [
+                "<Esc>"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "j"
+            ],
+            "after": [
+                "g",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "k"
+            ],
+            "after": [
+                "g",
+                "k"
+            ]
+        }
+    ],
+    "vim.useSystemClipboard": true,
+    "workbench.statusBar.visible": true,
+    "editor.fontFamily": "'Fira Code', 'Source Code Pro', Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontSize": 16,
+    "editor.tabSize": 2,
+    "editor.minimap.enabled": false,
+    "workbench.colorTheme": "Solarized Dark",
+    "git.countBadge": "tracked",
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.wordWrap": "on",
+    "editor.renderIndentGuides": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.bind.enter.key": false,
+    "[python]": {
+        "editor.rulers": [
+            120
+        ]
+    },
+    "[plaintext]": {
+        "editor.rulers": [
+            80
+        ]
+    },
+    "editor.fontLigatures": true,
+    "python.pythonPath": "/bin/python"
+}
