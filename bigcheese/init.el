@@ -44,6 +44,7 @@
 (setq package-archives '(("org"       . "http://orgmode.org/elpa/")
                          ("gnu"       . "http://elpa.gnu.org/packages/")
                          ("melpa"     . "http://melpa.org/packages/")
+                         ("MELPA Stable" . "https://stable.melpa.org/packages/")
                          ))
 (package-initialize)
 
@@ -74,23 +75,6 @@
   (evil-escape-mode t)
   (setq-default evil-escape-key-sequence "jk"))
 
-(use-package company               
-  :ensure t
-  :defer t
-  :init
-  (global-company-mode)
-  (company-tng-configure-default)
-  :config
-  (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 2))
-
-(use-package magit
-  :ensure t
-  :bind (("C-x g" . magit-status)))
-
-(use-package tex
-  :ensure auctex)
-
 (use-package which-key
   :ensure t
   :config (which-key-mode t))
@@ -101,6 +85,31 @@
   (setq ivy-use-virtual-buffers t
         ivy-count-format "%d/%d "))
 
+(use-package company               
+  :ensure t
+  :defer t
+  :init
+  (global-company-mode)
+  (company-tng-configure-default)
+  :config
+  (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 2))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package magit
+  :ensure t
+  :bind (("C-x g" . magit-status)))
+
+(use-package tex
+  :ensure auctex)
+
+(use-package company-auctex
+  :ensure t
+  :after (company tex))
+
 (use-package rust-mode
   :ensure t)
 
@@ -109,7 +118,7 @@
 (set-terminal-parameter nil 'background-mode 'dark)
 (load-theme 'solarized t)
 
-(set-frame-font "Fira Code 11" t t)
+(set-frame-font "Fira Code 12" t t)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
