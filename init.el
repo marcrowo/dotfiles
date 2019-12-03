@@ -1,5 +1,3 @@
-(require 'package)
-
 (setq-default inhibit-splash-screen t
               inhibit-startup-message t
               inhibit-startup-echo-area-message t
@@ -20,7 +18,7 @@
         (height . 57) ; lines
         ))
 
-;; show line numbers (new in Emacs 26.1)
+;; show line numbers
 (global-display-line-numbers-mode t)
 
 (setq require-final-newline t) ; Always add new line to the end of a file
@@ -33,15 +31,19 @@
 (setq c-default-style "linux"
       c-basic-offset 2)
 
-(setq package-enable-at-startup nil) ; tells emacs not to load any packages before starting up
-;; the following lines tell emacs where on the internet to look up
-;; for new packages.
-(setq package-archives '(("org"       . "http://orgmode.org/elpa/")
-                         ("gnu"       . "http://elpa.gnu.org/packages/")
-                         ("melpa"     . "https://melpa.org/packages/")
-                         ))
-;; not required in newer version of Emacs (?)
-;;(package-initialize)
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
+(set-frame-parameter nil 'background-mode 'dark)
+(set-terminal-parameter nil 'background-mode 'dark)
+(load-theme 'solarized t)
+
+(set-frame-font "SF Mono 12" t t)
+
+;; Packages
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+(package-initialize)
 
 ;; Bootstrap `use-package'
 (unless (package-installed-p 'use-package) ; unless it is already installed
@@ -51,28 +53,14 @@
 (eval-when-compile
   (require 'use-package))
 
-(use-package evil
-  :ensure t
-  :config (evil-mode t)
-  ;; Use j and k as gj and jk
-  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-  ;; Better split navigation, default is C-w + [h / j / k / l]
-	;; Disabled because conflicts with default Emacs keybindings.
-  ;;(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-  ;;(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-  ;;(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-  ;;(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
-)
-
-(use-package evil-escape
+(use-package ivy :demand
   :ensure t
   :config
-  (evil-escape-mode t)
-  (setq-default evil-escape-key-sequence "jk")
-)
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers t
+  ivy-count-format "%d/%d "))
 
-(use-package company               
+(use-package company
   :ensure t
   :defer t
   :init
@@ -80,12 +68,8 @@
   (company-tng-configure-default)
   :config
   (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 2)
-)
+  (setq company-minimum-prefix-length 2))
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/solarized")
-(set-frame-parameter nil 'background-mode 'light)
-(set-terminal-parameter nil 'background-mode 'light)
-(load-theme 'solarized t)
-
-(set-frame-font "Source Code Pro 14" t t)
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
